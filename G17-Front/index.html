@@ -1,0 +1,195 @@
+<!DOCTYPE html> <!--html v5-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TechCart - Tienda electrónica</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <!-- ENCABEZADO -->
+    <header>
+        <h1>TechCart</h1>   
+        <nav aria-label="Principal">
+            <ul>
+                <li>
+                    <a href="#catalogo">
+                        Catalogo
+                    </a>
+                </li>
+                <li>
+                    <a href="#compra">
+                        Comprar
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main>
+        <section id="catalogo">
+            <h2>Catalogo de productos</h2>
+            <div class="productos">
+                <article class="destacado">
+                    <figure>
+                        <img src="https://www.appleperu.pe/wp-content/uploads/macbook-pro-retina.jpg" alt="Macbook Pro 14 pulgadas gris espacial" width="200"/>
+                        <figcaption>Apple</figcaption>
+                    </figure>
+                    <h3>Macbook Pro 14"</h3>
+                    <p><strong>$1,999.99</strong></p>
+                    <button type="button">Agregar al carrito</button>
+                </article>
+                <article>
+                    <figure>
+                        <img src="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcS1eCKck5yyiDW08v0Uuzc-LssM4iJC3ttkPCbGSW-JpuJpH_OtZoalXeRYyit1DX0tDM9PaF0aedQP_PSy8K1kUc2Un-b1pr0I8YTPaokJFTWsc5nwQYzluZwKWMaS0CKHa9SD7XUSLw&usqp=CAc" alt="Macbook Pro 14 pulgadas gris espacial" width="200"/>
+                        <figcaption>Apple</figcaption>
+                    </figure>
+                    <h3>Macbook Pro 14"</h3>
+                    <p><strong>$2,000.99</strong></p>
+                    <button type="button">Agregar al carrito</button>
+                </article>
+                <article>
+                    <figure>
+                        <img src="https://cdsassets.apple.com/live/SZLF0YNV/images/sp/111902_mbp14-silver2.png" alt="Macbook Pro 14 pulgadas gris espacial" width="200"/>
+                        <figcaption>Apple</figcaption>
+                    </figure>
+                    <h3>Macbook Pro 14"</h3>
+                    <p><strong>$4,599.99</strong></p>
+                    <button type="button">Agregar al carrito</button>
+                </article>
+                <article>
+                    <figure>
+                        <img src="https://www.appleperu.pe/wp-content/uploads/1990-1.jpg" alt="Macbook Pro 14 pulgadas gris espacial" width="200"/>
+                        <figcaption>Apple</figcaption>
+                    </figure>
+                    <h3>Macbook Pro 14"</h3>
+                    <p><strong>$1,009.99</strong></p>
+                    <button type="button">Agregar al carrito</button>
+                </article>
+            <div>
+        </section>
+        <section id="compra">
+            <h2>Finalizar compra</h2>
+            <form action="">
+                <fieldset class="envio">
+                    <legend>Datos de envio</legend>
+                    <p>
+                        <label for="nombre">Nombre completo</label><br/>
+                        <input type="text"  id="nombre" name="nombre" required minlength="3" autocomplete="name" placeholder="Nombre del usuario">
+                    </p>
+                    <p>
+                        <label for="email">Correo electronico</label><br/>
+                        <input type="email" id="email" name="email" required autocomplete="email">
+                    </p>
+                    <p>
+                        <label for="direccion">Direccion</label><br/>
+                        <input type="text" id="direccion" name="direccion" required minlength="5" autocomplete="address-line1">
+                    </p>
+                    <p>
+                        <label for="ciudad">Ciudad</label><br/>
+                        <input type="text" id="ciudad" name="ciudad" list="ciudades" required autocomplete="address-level2">    
+                        <datalist id="ciudades">
+                            <option value="Lima"></option>
+                            <option value="Bogota"></option>
+                            <option value="Ciudade de Mexico"></option>
+                            <option value="Buenos Aires"></option>
+                            <option value="Madrid"></option>
+                        </datalist>
+                    </p>
+                    <p>
+                        <label for="pais">Pais</label><br/>
+                        <select name="pais" id="pais" required>
+                            <option value="">-Elige un pais-</option>
+                            <option value="pe">Peru</option>
+                            <option value="co">Colombia</option>
+                            <option value="mx">Mexico</option>
+                            <option value="ar">Argentina</option>
+                            <option value="es">Espana</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="telefono">Telefono</label><br/>
+                        <input type="tel" id="telefono" pattern="[0-9]{7,}" title="Solo numeros, al menos 7 digitos" autocomplete="tel">
+                    </p>
+                    <p>
+                        <label for="fecha">Fecha de entrega deseada</label><br/>
+                        <input type="date" id="fecha" name="fecha">
+                    </p>
+                    <p>
+                        <label for="cantidad">Cantidad de unidades</label>
+                        <input type="number" id="cantidad" name="cantidad" min="1" max="10" step="1" value="1" required>
+                    </p>
+                    <p class="campo-ancho">
+                        <label for="notas">Notas para el repartidor (opcinal)</label>
+                        <textarea name="notas" id="notas" rows="5" maxlength="200"></textarea>
+                    </p>
+                </fieldset>
+                <fieldset>
+                    <legend>Metodo de pago</legend>
+                    <p>
+                        <input type="radio" id="pago-tarjeta" name="pago" value="tarjeta" required>
+                        <label for="pago-tarjeta">Tarjeta</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="pago-paypal" name="pago" value="paypal">
+                        <label for="pago-paypal">PayPal</label>
+                    </p>
+                    <p>
+                        <input type="radio" id="pago-contra" name="pago" value="contraentrega">
+                        <label for="pago-contra">Contra entrega</label>
+                    </p>
+                </fieldset>
+                <p>
+                    <input type="checkbox" id="terminos" name="terminos" required>
+                    <label for="terminos">Acepto terminos y condiciones</label>
+                </p>
+                <button type="submit">Confirmar pedido</button>
+            </form>
+        </section>
+    </main>
+    <aside>
+            <h2>Informacion de la compra</h2>
+            <h3>Como comprar en tres pasos</h3>
+            <ol>
+                <li>Elige un producto del catalogo.</li>
+                <li>Agregalo al carrito</li>
+                <li>Confirma tu pedido con tus datos de envio</li>
+            </ol>
+
+            <h3>Costos de envio</h3>
+            <table>
+                <caption>Tarifas por zona</caption>
+                <thead>
+                    <tr>
+                        <th>Zona</th>
+                        <th>Tiempo</th>
+                        <th>Costo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Lima</td>
+                        <td>24 horas</td>
+                        <td>Gratis</td>
+                    </tr>
+                    <tr>
+                        <td>Resto del Peru</td>
+                        <td>3 a 5 dias</td>
+                        <td>$9.90</td>
+                    </tr>
+                    <tr>
+                        <td>Internacional</td>
+                        <td>7 a 15 dias</td>
+                        <td>$29.90</td>
+                    </tr>
+                </tbody>
+            </table>
+    </aside>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 TechCart - Proyecto educativo</p>
+        <p>Datos e imagenes de <a href="https://dummyjson.com" target="_blank" rel="noopener">DummyJson</a></p>
+        <address>Contacto: <a href="mailto:edwardhc1997@gmail.com">edwardhc1997@gmail.com</a></address>
+    </footer>
+</body>
+</html>
