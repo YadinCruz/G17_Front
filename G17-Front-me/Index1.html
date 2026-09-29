@@ -1,52 +1,113 @@
-<!DOCTYPE html><!--html v5-->
+```html
+<!DOCTYPE html>
 <html lang="es">
 <head>
-
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>TechCart -Tienda Electronica</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechCart - Tienda Electrónica</title>
     <link rel="stylesheet" href="./css/styles1.css">
-
 </head>
+
 <body>
-<!-- encabezado -->
+
     <header>
-        <h1>TeachCart</h1>
+        <h1>TechCart</h1>
+
         <nav aria-label="Principal">
-        
             <ul>
-                <li>
-                    <a href="#catalogo">
-                        catalogo
-                    </a>
-                    <!-- <a href="https://music.youtube.com/watch?v=Ow-Nlp0XdXU&list=RDAMVMOw-Nlp0XdXU">BesameRemix</a> -->
-                </li>
-                <li>
-                    <a href="#compra">
-                        Compra
-                    </a>
-                </li>
-                <li>
-                    <a href="nosotros.html">Nosotros</a>
-                </li>
-            
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#compra">Compra</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
             </ul>
         </nav>
 
+        <button class="carrito" type="button">
+            Comprar
+            <span class="contador">3</span>
+        </button>
     </header>
-        <!-- contenido principal -->
+
+    <section class="promo">
+        <div>
+            <h2>Tecnología para todos</h2>
+            <p>Encuentra laptops y productos tecnológicos para estudiar, trabajar y disfrutar.</p>
+        </div>
+
+        <strong>¡Ofertas especiales!</strong>
+    </section>
+
+    <aside>
+        <h2>Información de compra</h2>
+
+        <h3>Cómo comprar en tres pasos</h3>
+
+        <ol>
+            <li>Elige un producto del catálogo.</li>
+            <li>Agrégalo al carrito.</li>
+            <li>Confirma tu pedido con tus datos.</li>
+        </ol>
+
+        <h3>Costo de envíos</h3>
+
+        <table>
+            <caption>Tarifa por zonas</caption>
+
+            <thead>
+                <tr>
+                    <th>Zona</th>
+                    <th>Tiempo</th>
+                    <th>Costo</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td>Lima</td>
+                    <td>24 horas</td>
+                    <td>Gratis</td>
+                </tr>
+
+                <tr>
+                    <td>Resto del Perú</td>
+                    <td>3 a 5 días</td>
+                    <td>$9.90</td>
+                </tr>
+
+                <tr>
+                    <td>Internacional</td>
+                    <td>7 a 15 días</td>
+                    <td>$29.90</td>
+                </tr>
+            </tbody>
+        </table>
+    </aside>
+
     <main>
-            <section id="catalogo">
-                <!-- subtitulo= h2,h3,hn -->
-                <h2>catalogo de producto</h2>
+
+        <section id="catalogo">
+            <h2>Catálogo de productos</h2>
+
+            <nav class="categorias" aria-label="Categorías">
+                <ul>
+                    <li><a href="#laptops">Laptops</a></li>
+                    <li><a href="#monitores">Monitores</a></li>
+                    <li><a href="#accesorios">Accesorios</a></li>
+                    <li><a href="#ofertas">Ofertas</a></li>
+                </ul>
+            </nav>
+
+            <div class="productos">
+
                 <article class="destacado">
                     <figure>
-                        <!-- src dice donde esta la foto(link) en el alt va una alternativa-->
-                        <img src="img/H37635cf16d0d4457aa21ebba19ed4cc1x.jpg" alt="Portátil I7x" width="200"/>
+                        <img src="img/H37635cf16d0d4457aa21ebba19ed4cc1x.jpg" alt="Portátil I7">
                         <figcaption>Portátil I7</figcaption>
                     </figure>
+
                     <h3 class="titulo">Portátil I7</h3>
-                    <p><strong>$1999.9</strong></p>
+
+                    <p><strong>$1999.90</strong></p>
+
                     <table>
                         <caption>Especificaciones</caption>
 
@@ -60,22 +121,28 @@
                             <td>16 GB</td>
                         </tr>
 
-                         <tr>
+                        <tr>
                             <th>Almacenamiento</th>
                             <td>512 GB SSD</td>
                         </tr>
                     </table>
-                    <button type="button">agregar carrito</button>
+
+                    <button type="button">Agregar al carrito</button>
                 </article>
+
                 <article>
                     <figure>
-                        <img src ="img/descarga.webp" alt="mac laptop" width="200"/>
-                        <figcaption>apple mac</figcaption>
+                        <img src="img/descarga.webp" alt="Mac laptop">
+                        <figcaption>Apple Mac</figcaption>
                     </figure>
-                    <h3>laptop MAC apple</h3>
-                    <p><strong>$2499.9</strong></p>
+
+                    <h3>Laptop MAC Apple</h3>
+
+                    <p><strong>$2499.90</strong></p>
+
                     <table>
                         <caption>Especificaciones</caption>
+
                         <tr>
                             <th>Procesador</th>
                             <td>Apple M2</td>
@@ -91,18 +158,23 @@
                             <td>256 GB SSD</td>
                         </tr>
                     </table>
-                    <button type="button">agregar carrito</button>
-                </article>
-                <article>
-                      <figure>
-                        <img src="img/laptop3.webp" alt="Laptop HP 15-fd2351la U5" width="200"/>
-                        <figcaption>HP</figcaption>
-                      </figure>
 
-                    <h3>Laptop Hp</h3>
+                    <button type="button">Agregar al carrito</button>
+                </article>
+
+                <article>
+                    <figure>
+                        <img src="img/laptop3.webp" alt="Laptop HP">
+                        <figcaption>HP</figcaption>
+                    </figure>
+
+                    <h3>Laptop HP</h3>
+
                     <p><strong>$2519.99</strong></p>
+
                     <table>
                         <caption>Especificaciones</caption>
+
                         <tr>
                             <th>Procesador</th>
                             <td>Intel Core Ultra 5</td>
@@ -118,180 +190,343 @@
                             <td>512 GB SSD</td>
                         </tr>
                     </table>
-                    <button type="button">agregar carrito</button>
 
+                    <button type="button">Agregar al carrito</button>
                 </article>
-            </section>
-            <aside>
-                <h2>Informacion de compra</h2>
-                <h3>Como comprar en tres pasos</h3>
 
-                <ol>
-                    <li>Elige un producto del catalogo</li><br/>
-                    <li>Agregalo al carrito</li><br/>
-                    <li>Confirma tu pedido con tus datos de envio</li><br/>
-                </ol>
+                <article>
+                    <figure>
+                        <img src="img/Lenovo8GB.jpeg" alt="Laptop Lenovo">
+                        <figcaption>Lenovo</figcaption>
+                    </figure>
 
-                <h3>costo de envios</h3>
-                <table>
-                    <caption>Tarifa por zonas</caption>
-                    <thead>
-                        <tr>
-                        <th>zona</th>
-                        <th>tiempo</th>
-                        <th>costo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>lima</td>
-                            <td>24 horas</td>
-                            <td>gratis</td>
-                        </tr>
-                        <tr>
-                            <td>resto del peru</td>
-                            <td>3 a 5 dias</td>
-                            <td>$9.9</td>
-                        </tr>
-                        <tr>
-                            <td>internacional</td>
-                            <td>7 a 15 dias</td>
-                            <td>$29.9</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </aside>
-            <aside>
-                <h2>Informacion de como completar el pedido</h2>
-                <h3>Como comprar en tres pasos</h3>
+                    <h3>Laptop Lenovo</h3>
 
-                <ol>
-                    <li>Complete el Formulario</li><br/>
-                    <li>Marque el metodo de pago</li><br/>
-                    <li>hacer click en el boton de "confirmar pedido"</li><br/>
-                </ol>
-            </aside>
-            <section id="compra">
-                <h2>finalizar compra   </h2>
-                <form>
-                    <!-- <fieldset> hace un marco y el <legend> es el titulo -->
-                    <fieldset>
-                        <legend>Datos de envio</legend>
+                    <p><strong>$1899.90</strong></p>
+
+                    <table>
+                        <caption>Especificaciones</caption>
+
+                        <tr>
+                            <th>Procesador</th>
+                            <td>Intel Core i5</td>
+                        </tr>
+
+                        <tr>
+                            <th>Memoria RAM</th>
+                            <td>8 GB</td>
+                        </tr>
+
+                        <tr>
+                            <th>Almacenamiento</th>
+                            <td>512 GB SSD</td>
+                        </tr>
+                    </table>
+
+                    <button type="button">Agregar al carrito</button>
+                </article>
+
+                <article>
+                    <figure>
+                        <img src="img/Asus.jpeg" alt="Laptop ASUS">
+                        <figcaption>ASUS</figcaption>
+                    </figure>
+
+                    <h3>Laptop ASUS</h3>
+
+                    <p><strong>$1699.90</strong></p>
+
+                    <table>
+                        <caption>Especificaciones</caption>
+
+                        <tr>
+                            <th>Procesador</th>
+                            <td>AMD Ryzen 5</td>
+                        </tr>
+
+                        <tr>
+                            <th>Memoria RAM</th>
+                            <td>16 GB</td>
+                        </tr>
+
+                        <tr>
+                            <th>Almacenamiento</th>
+                            <td>512 GB SSD</td>
+                        </tr>
+                    </table>
+
+                    <button type="button">Agregar al carrito</button>
+                </article>
+
+            </div>
+        </section>
+
+        <section>
+            <h2>Cómo completar el pedido</h2>
+
+            <h3>Compra en tres pasos</h3>
+
+            <ol>
+                <li>Completa el formulario.</li>
+                <li>Marca el método de pago.</li>
+                <li>Haz clic en confirmar pedido.</li>
+            </ol>
+        </section>
+
+        <section id="compra">
+            <h2>Finalizar compra</h2>
+
+            <form>
+
+                <fieldset class="envio">
+                    <legend>Datos de envío</legend>
+
+                    <p>
+                        <label for="nombre">Nombre completo</label>
+                        <input
+                            type="text"
+                            id="nombre"
+                            name="nombre"
+                            required
+                            minlength="3"
+                            autocomplete="name"
+                            placeholder="Nombre del usuario"
+                        >
+                    </p>
+
+                    <p>
+                        <label for="email">Email</label>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            required
+                            autocomplete="email"
+                            placeholder="email@gmail.com"
+                        >
+                    </p>
+
+                    <p>
+                        <label for="direccion">Dirección completa</label>
+                        <input
+                            type="text"
+                            id="direccion"
+                            name="direccion"
+                            required
+                            minlength="5"
+                            autocomplete="street-address"
+                        >
+                    </p>
+
+                    <div class="fila">
                         <p>
-                            <!-- required=obligatorio -->
-                            <!-- el for del label debe coincidir con el id del input para q funcione -->
-                            <label for="nombre">Nombre completo</label></br>
-                            <input type="text" id="nombre" name="nombre" required minlength="3" autocomplete="name" placeholder="Nombre del usuario">
-                        </p>
-                        <p>
-                           <label for="email">email@gmail.com</label></br>
-                            <input type="text" id="email" name="gmail" required autocomplete="gmail">
-                        </p>
-                        <p>
-                           <label for="direccion">direccion completo</label></br>
-                            <input type="text" id="direccion" name="Direccion" required minlength="5" autocomplete="direccion">
-                        </p>
-                        <p>
-                           <label for="ciudad">Nombre de ciudad</label></br>
-                            <input type="text" id="ciudad" name="ciudad" list="ciudades" required minlength="3" autocomplete="ciudades">
+                            <label for="ciudad">Ciudad</label>
+                            <input
+                                type="text"
+                                id="ciudad"
+                                name="ciudad"
+                                list="ciudades"
+                                required
+                            >
+
                             <datalist id="ciudades">
-                                <option value="lima"></option>
-                                <option value="bogota"></option>
-                                <option value="barcelona"></option>
+                                <option value="Lima">
+                                <option value="Bogotá">
+                                <option value="Barcelona">
                             </datalist>
                         </p>
+
                         <p>
-                           <label for="pais">Pais</label></br>
-                           <select name="pais" id="pais" required>
-                            <option value="">Seleccione un pais</option>
-                            <option value="Pe">Perú</option>
-                            <option value="Arg">Argentina</option>
-                            <option value="mx">Mexico</option>
-                            <option value="ca">Canadá</option>
+                            <label for="pais">País</label>
+
+                            <select name="pais" id="pais" required>
+                                <option value="">Seleccione un país</option>
+                                <option value="pe">Perú</option>
+                                <option value="ar">Argentina</option>
+                                <option value="mx">México</option>
+                                <option value="ca">Canadá</option>
                             </select>
                         </p>
-                        <p>
-                            <label for="telefono">Telefono</label>
-                            <input type="tel" id="telefono"   pattern="[0-9]{7,}" title="soslo numeros">
-                        </p>
-                        <p>
-                            <label for="fecha">Fecha de entrega deseada</label><br/>
-                            <input type="date" id="fecha" name="fecha">
-                        </p>
+                    </div>
 
+                    <div class="fila">
                         <p>
-                            <label for="cantidad">Cantidad de unidades</label>
-                            <input type="number" id="cantidad" name="cantidad" min="1" max="10" step="1" value="1" required>
-                        </p>
-                        <p>
-                            <label for="nota">notas al repartidor</label>
-                            <textarea name="nota" id="nota" rows="5" maxlength="200"></textarea>
-                        </p>
-
-                    </fieldset>
-                    
-                    <fieldset>
-                        <legend>meto de pago</legend>
-                        <p>
-                            <input type="radio" id="pago-tarjeta" name="pago" value="tarjeta" required>
-                            <label for="pago-tarjeta">tarjeta</label>
-                        </p>
-                        <p>
-                            <input type="radio" id="pago-paypal" name="pago" value="paypal" required>
-                            <label for="pago-paypal">paypal</label>
-                        </p>
-                        <p>
-                            <input type="radio" id="pago-contra" name="pago" value="contra" required>
-                            <label for="pago-contra">contra</label>
-                        </p>
-                        <p>
-                            <input type="checkbox" id="terminos" name="terminos"required>
-                            <label for="terminos">terminos y condiciones</label>
-                        </p>
-                    </fieldset>
-
-
-                    <fieldset>
-                        <legend>Datos de facturación</legend>
-
-                        <p>
-                            <label for="empresa">Empresa</label><br/>
-                            <input type="text" id="empresa" name="empresa">
-                        </p>
-
-                        <p>
-                            <label for="ruc">RUC</label><br/>
-                            <input type="text" id="ruc" name="ruc" pattern="[0-9]{11}" maxlength="11" required
+                            <label for="telefono">Teléfono</label>
+                            <input
+                                type="tel"
+                                id="telefono"
+                                name="telefono"
+                                pattern="[0-9]{7,}"
+                                title="Solo números"
                             >
                         </p>
 
                         <p>
-                            <label for="pais_facturacion">País</label><br/>
-
-                            <select id="pais_facturacion" name="pais_facturacion" required>
-
-                                <option value="">Seleccione un país</option>
-                                    <option value="pe">Perú</option>
-                                    <option value="ar">Argentina</option>
-                                    <option value="mx">México</option>
-                                    <option value="ca">Canadá</option>
-
-
-                            </select>
+                            <label for="fecha">Fecha de entrega</label>
+                            <input
+                                type="date"
+                                id="fecha"
+                                name="fecha"
+                            >
                         </p>
+                    </div>
 
-                    </fieldset>
+                    <p>
+                        <label for="cantidad">Cantidad de unidades</label>
+                        <input
+                            type="number"
+                            id="cantidad"
+                            name="cantidad"
+                            min="1"
+                            max="10"
+                            step="1"
+                            value="1"
+                            required
+                        >
+                    </p>
 
-                    <button type="submit">confirmar pedido</button>
-                </form>
-            </section>
+                    <p>
+                        <label for="nota">Notas al repartidor</label>
+                        <textarea
+                            name="nota"
+                            id="nota"
+                            rows="5"
+                            maxlength="200"
+                        ></textarea>
+                    </p>
+                </fieldset>
+
+                <fieldset class="pago">
+                    <legend>Método de pago</legend>
+
+                    <p>
+                        <input
+                            type="radio"
+                            id="pago-tarjeta"
+                            name="pago"
+                            value="tarjeta"
+                            required
+                        >
+                        <label for="pago-tarjeta">Tarjeta</label>
+                    </p>
+
+                    <p>
+                        <input
+                            type="radio"
+                            id="pago-paypal"
+                            name="pago"
+                            value="paypal"
+                        >
+                        <label for="pago-paypal">PayPal</label>
+                    </p>
+
+                    <p>
+                        <input
+                            type="radio"
+                            id="pago-contra"
+                            name="pago"
+                            value="contra"
+                        >
+                        <label for="pago-contra">Contra entrega</label>
+                    </p>
+                </fieldset>
+
+                <fieldset class="terminos">
+                    <legend>Confirmación</legend>
+
+                    <p>
+                        <input
+                            type="checkbox"
+                            id="terminos"
+                            name="terminos"
+                            required
+                        >
+                        <label for="terminos">
+                            Acepto los términos y condiciones
+                        </label>
+                    </p>
+                </fieldset>
+
+                <fieldset class="facturacion">
+                    <legend>Datos de facturación</legend>
+
+                    <p>
+                        <label for="empresa">Empresa</label>
+                        <input
+                            type="text"
+                            id="empresa"
+                            name="empresa"
+                        >
+                    </p>
+
+                    <p>
+                        <label for="ruc">RUC</label>
+                        <input
+                            type="text"
+                            id="ruc"
+                            name="ruc"
+                            pattern="[0-9]{11}"
+                            maxlength="11"
+                            required
+                        >
+                    </p>
+
+                    <p>
+                        <label for="pais_facturacion">País</label>
+
+                        <select
+                            id="pais_facturacion"
+                            name="pais_facturacion"
+                            required
+                        >
+                            <option value="">Seleccione un país</option>
+                            <option value="pe">Perú</option>
+                            <option value="ar">Argentina</option>
+                            <option value="mx">México</option>
+                            <option value="ca">Canadá</option>
+                        </select>
+                    </p>
+                </fieldset>
+
+                <button class="confirmar" type="submit">
+                    Confirmar pedido
+                </button>
+
+            </form>
+        </section>
+
     </main>
-        <footer>
-                <p>&copy; 2026 TechChart - Proyecto educativo</p>
-                <p>Datos e imagenes de <a href="https://dummyjson.com" target="_blank">DummyJson</a></p>
-                <address>Contacto: <a href="mailto:edwardhc1997@gmail.com">edwardhc1997@gmail.com</a></address>
-        </footer>
 
+    <footer>
+        <div class="footer-marca">
+            <h3>TechCart</h3>
+            <p>Tu tienda de tecnología.</p>
+        </div>
+
+        <div class="footer-enlaces">
+            <h3>Enlaces</h3>
+
+            <ul>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#compra">Comprar</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contacto">
+            <h3>Contacto</h3>
+
+            <address>
+                <a href="mailto:edwardhc1997@gmail.com">
+                    edwardhc1997@gmail.com
+                </a>
+            </address>
+        </div>
+
+        <p class="copyright">
+            &copy; 2026 TechCart - Proyecto educativo
+        </p>
+    </footer>
 
 </body>
 </html>
