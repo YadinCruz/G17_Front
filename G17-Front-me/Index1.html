@@ -1,532 +1,319 @@
-```html
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechCart - Tienda Electrónica</title>
-    <link rel="stylesheet" href="./css/styles1.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TechCart — Tienda de electrónica</title>
+
+  <link rel="stylesheet" href="./css/styles1.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script type="module" src="./js/main.js"></script>
+  <style type="text/tailwindcss">
+
+    @theme {
+
+      --color-marca:        #0066cc;
+      --color-sobre-marca:  #fff;
+      --color-exito:        hsl(146 85% 26%);
+      --color-error:        #c0392b;
+      --color-fondo:        #f5f5f7;
+      --color-fondo-suave:  #e5e5ea;
+      --color-tarjeta:      #fff;
+      --color-resalte:      #e8f1fb;
+      --color-texto:        #1d1d1f;
+      --color-texto-suave:  #6e6e73;
+      --color-borde:        #d2d2d7;
+
+      --radius-tarjeta: 12px;
+
+      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+      --text-seccion: clamp(1.25rem, 1rem + 1.2vw, 1.5rem);
+
+      --animate-aparecer: aparecer 0.5s ease-out backwards;
+      --animate-latido:   latido 1.6s ease-in-out infinite alternate;
+
+      --breakpoint-monitor: 75rem;
+
+      --container-pagina: 1100px;
+      --container-ancha:  1280px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-marca:        #3d9bff;
+        --color-sobre-marca:  #0b1220;
+        --color-exito:        #30d158;
+        --color-error:        #ff6b5e;
+        --color-fondo:        #111114;
+        --color-fondo-suave:  #2c2c2e;
+        --color-tarjeta:      #1d1d1f;
+        --color-resalte:      #0e2439;
+        --color-texto:        #f5f5f7;
+        --color-texto-suave:  #a1a1a6;
+        --color-borde:        #3a3a3c;
+      }
+    }
+
+    @layer components {
+
+      .tarjeta {
+        @apply bg-tarjeta border border-borde rounded-tarjeta p-4;
+      }
+
+      .boton {
+        @apply bg-marca text-sobre-marca cursor-pointer rounded-full px-[1.2em] py-[0.6em]
+               transition-[transform,filter] duration-150
+               hover:brightness-110 hover:-translate-y-px
+               focus-visible:brightness-110 focus-visible:-translate-y-px
+               active:translate-y-0 active:scale-95
+               focus-visible:outline-3 focus-visible:outline-marca focus-visible:outline-offset-2
+               motion-reduce:transition-none;
+      }
+
+      .campo {
+        @apply basis-full min-w-0 px-3 py-2 border border-borde rounded-lg
+               bg-fondo text-texto
+               placeholder:text-texto-suave placeholder:italic
+               user-invalid:border-error
+               focus-visible:outline-3 focus-visible:outline-marca focus-visible:outline-offset-2;
+      }
+
+      .titulo-seccion {
+        @apply text-seccion leading-tight
+               after:content-[''] after:block after:w-12 after:h-[3px]
+               after:bg-marca after:mt-1;
+      }
+    }
+  </style>
 </head>
 
-<body>
+<body class="bg-fondo text-texto max-w-pagina monitor:max-w-ancha mx-auto p-4 lg:p-5 monitor:p-7">
 
-    <header>
-        <h1>TechCart</h1>
+  <header class="flex flex-col items-start gap-4 bg-tarjeta rounded-tarjeta py-4 px-5
+                 md:flex-row md:justify-between md:items-center">
 
-        <nav aria-label="Principal">
-            <ul>
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#compra">Compra</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-            </ul>
-        </nav>
+    <h1 class="flex items-center justify-center w-35 h-11 bg-marca text-sobre-marca rounded-lg text-xl">TechCart</h1>
 
-        <button class="carrito" type="button">
-            Comprar
-            <span class="contador">3</span>
-        </button>
-    </header>
+    <nav aria-label="Principal">
 
-    <section class="promo">
-        <div>
-            <h2>Tecnología para todos</h2>
-            <p>Encuentra laptops y productos tecnológicos para estudiar, trabajar y disfrutar.</p>
-        </div>
+      <ul class="flex gap-5">
+        <li><a class="text-marca font-semibold no-underline hover:underline" href="#catalogo">Catálogo</a></li>
+        <li><a class="text-marca font-semibold no-underline hover:underline" href="#compra">Comprar</a></li>
+      </ul>
+    </nav>
+    <p id="resumen-carrito" class="font-semibold m-0" role="status" aria-live="polite"></p>
+  </header>
 
-        <strong>¡Ofertas especiales!</strong>
+  <main>
+
+    <section class="grid grid-cols-[repeat(auto-fit,minmax(min(150px,100%),1fr))] gap-4 mb-6"
+             aria-label="Beneficios de la tienda">
+      <article class="tarjeta text-center">
+        <p class="text-3xl mb-1" aria-hidden="true">🚚</p>
+        <h3 class="text-base leading-tight mb-1">Envío gratis</h3>
+        <p class="text-sm text-texto-suave">En compras desde $50, a todo el país.</p>
+      </article>
+      <article class="tarjeta text-center">
+        <p class="text-3xl mb-1" aria-hidden="true">🛡️</p>
+        <h3 class="text-base leading-tight mb-1">Garantía real</h3>
+        <p class="text-sm text-texto-suave">12 meses en todos los productos.</p>
+      </article>
+      <article class="tarjeta text-center">
+        <p class="text-3xl mb-1" aria-hidden="true">🔒</p>
+        <h3 class="text-base leading-tight mb-1">Pago seguro</h3>
+        <p class="text-sm text-texto-suave">Tarjeta, PayPal o contra entrega.</p>
+      </article>
     </section>
 
-    <aside>
-        <h2>Información de compra</h2>
 
-        <h3>Cómo comprar en tres pasos</h3>
+    <section id="catalogo">
+        <h2 class="titulo-seccion">Catálogo de productos</h2>
 
-        <ol>
-            <li>Elige un producto del catálogo.</li>
-            <li>Agrégalo al carrito.</li>
-            <li>Confirma tu pedido con tus datos.</li>
-        </ol>
+        <div id="estado-catalogo" role="status" aria-live="polite"></div>
 
-        <h3>Costo de envíos</h3>
-
-        <table>
-            <caption>Tarifa por zonas</caption>
-
-            <thead>
-                <tr>
-                    <th>Zona</th>
-                    <th>Tiempo</th>
-                    <th>Costo</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr>
-                    <td>Lima</td>
-                    <td>24 horas</td>
-                    <td>Gratis</td>
-                </tr>
-
-                <tr>
-                    <td>Resto del Perú</td>
-                    <td>3 a 5 días</td>
-                    <td>$9.90</td>
-                </tr>
-
-                <tr>
-                    <td>Internacional</td>
-                    <td>7 a 15 días</td>
-                    <td>$29.90</td>
-                </tr>
-            </tbody>
-        </table>
-    </aside>
-
-    <main>
-
-        <section id="catalogo">
-            <h2>Catálogo de productos</h2>
-
-            <nav class="categorias" aria-label="Categorías">
-                <ul>
-                    <li><a href="#laptops">Laptops</a></li>
-                    <li><a href="#monitores">Monitores</a></li>
-                    <li><a href="#accesorios">Accesorios</a></li>
-                    <li><a href="#ofertas">Ofertas</a></li>
-                </ul>
-            </nav>
-
-            <div class="productos">
-
-                <article class="destacado">
-                    <figure>
-                        <img src="img/H37635cf16d0d4457aa21ebba19ed4cc1x.jpg" alt="Portátil I7">
-                        <figcaption>Portátil I7</figcaption>
-                    </figure>
-
-                    <h3 class="titulo">Portátil I7</h3>
-
-                    <p><strong>$1999.90</strong></p>
-
-                    <table>
-                        <caption>Especificaciones</caption>
-
-                        <tr>
-                            <th>Procesador</th>
-                            <td>Intel Core i7</td>
-                        </tr>
-
-                        <tr>
-                            <th>Memoria RAM</th>
-                            <td>16 GB</td>
-                        </tr>
-
-                        <tr>
-                            <th>Almacenamiento</th>
-                            <td>512 GB SSD</td>
-                        </tr>
-                    </table>
-
-                    <button type="button">Agregar al carrito</button>
-                </article>
-
-                <article>
-                    <figure>
-                        <img src="img/descarga.webp" alt="Mac laptop">
-                        <figcaption>Apple Mac</figcaption>
-                    </figure>
-
-                    <h3>Laptop MAC Apple</h3>
-
-                    <p><strong>$2499.90</strong></p>
-
-                    <table>
-                        <caption>Especificaciones</caption>
-
-                        <tr>
-                            <th>Procesador</th>
-                            <td>Apple M2</td>
-                        </tr>
-
-                        <tr>
-                            <th>Memoria RAM</th>
-                            <td>8 GB</td>
-                        </tr>
-
-                        <tr>
-                            <th>Almacenamiento</th>
-                            <td>256 GB SSD</td>
-                        </tr>
-                    </table>
-
-                    <button type="button">Agregar al carrito</button>
-                </article>
-
-                <article>
-                    <figure>
-                        <img src="img/laptop3.webp" alt="Laptop HP">
-                        <figcaption>HP</figcaption>
-                    </figure>
-
-                    <h3>Laptop HP</h3>
-
-                    <p><strong>$2519.99</strong></p>
-
-                    <table>
-                        <caption>Especificaciones</caption>
-
-                        <tr>
-                            <th>Procesador</th>
-                            <td>Intel Core Ultra 5</td>
-                        </tr>
-
-                        <tr>
-                            <th>Memoria RAM</th>
-                            <td>16 GB</td>
-                        </tr>
-
-                        <tr>
-                            <th>Almacenamiento</th>
-                            <td>512 GB SSD</td>
-                        </tr>
-                    </table>
-
-                    <button type="button">Agregar al carrito</button>
-                </article>
-
-                <article>
-                    <figure>
-                        <img src="img/Lenovo8GB.jpeg" alt="Laptop Lenovo">
-                        <figcaption>Lenovo</figcaption>
-                    </figure>
-
-                    <h3>Laptop Lenovo</h3>
-
-                    <p><strong>$1899.90</strong></p>
-
-                    <table>
-                        <caption>Especificaciones</caption>
-
-                        <tr>
-                            <th>Procesador</th>
-                            <td>Intel Core i5</td>
-                        </tr>
-
-                        <tr>
-                            <th>Memoria RAM</th>
-                            <td>8 GB</td>
-                        </tr>
-
-                        <tr>
-                            <th>Almacenamiento</th>
-                            <td>512 GB SSD</td>
-                        </tr>
-                    </table>
-
-                    <button type="button">Agregar al carrito</button>
-                </article>
-
-                <article>
-                    <figure>
-                        <img src="img/Asus.jpeg" alt="Laptop ASUS">
-                        <figcaption>ASUS</figcaption>
-                    </figure>
-
-                    <h3>Laptop ASUS</h3>
-
-                    <p><strong>$1699.90</strong></p>
-
-                    <table>
-                        <caption>Especificaciones</caption>
-
-                        <tr>
-                            <th>Procesador</th>
-                            <td>AMD Ryzen 5</td>
-                        </tr>
-
-                        <tr>
-                            <th>Memoria RAM</th>
-                            <td>16 GB</td>
-                        </tr>
-
-                        <tr>
-                            <th>Almacenamiento</th>
-                            <td>512 GB SSD</td>
-                        </tr>
-                    </table>
-
-                    <button type="button">Agregar al carrito</button>
-                </article>
-
-            </div>
-        </section>
-
-        <section>
-            <h2>Cómo completar el pedido</h2>
-
-            <h3>Compra en tres pasos</h3>
-
-            <ol>
-                <li>Completa el formulario.</li>
-                <li>Marca el método de pago.</li>
-                <li>Haz clic en confirmar pedido.</li>
-            </ol>
-        </section>
-
-        <section id="compra">
-            <h2>Finalizar compra</h2>
-
-            <form>
-
-                <fieldset class="envio">
-                    <legend>Datos de envío</legend>
-
-                    <p>
-                        <label for="nombre">Nombre completo</label>
-                        <input
-                            type="text"
-                            id="nombre"
-                            name="nombre"
-                            required
-                            minlength="3"
-                            autocomplete="name"
-                            placeholder="Nombre del usuario"
-                        >
-                    </p>
-
-                    <p>
-                        <label for="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            required
-                            autocomplete="email"
-                            placeholder="email@gmail.com"
-                        >
-                    </p>
-
-                    <p>
-                        <label for="direccion">Dirección completa</label>
-                        <input
-                            type="text"
-                            id="direccion"
-                            name="direccion"
-                            required
-                            minlength="5"
-                            autocomplete="street-address"
-                        >
-                    </p>
-
-                    <div class="fila">
-                        <p>
-                            <label for="ciudad">Ciudad</label>
-                            <input
-                                type="text"
-                                id="ciudad"
-                                name="ciudad"
-                                list="ciudades"
-                                required
-                            >
-
-                            <datalist id="ciudades">
-                                <option value="Lima">
-                                <option value="Bogotá">
-                                <option value="Barcelona">
-                            </datalist>
-                        </p>
-
-                        <p>
-                            <label for="pais">País</label>
-
-                            <select name="pais" id="pais" required>
-                                <option value="">Seleccione un país</option>
-                                <option value="pe">Perú</option>
-                                <option value="ar">Argentina</option>
-                                <option value="mx">México</option>
-                                <option value="ca">Canadá</option>
-                            </select>
-                        </p>
-                    </div>
-
-                    <div class="fila">
-                        <p>
-                            <label for="telefono">Teléfono</label>
-                            <input
-                                type="tel"
-                                id="telefono"
-                                name="telefono"
-                                pattern="[0-9]{7,}"
-                                title="Solo números"
-                            >
-                        </p>
-
-                        <p>
-                            <label for="fecha">Fecha de entrega</label>
-                            <input
-                                type="date"
-                                id="fecha"
-                                name="fecha"
-                            >
-                        </p>
-                    </div>
-
-                    <p>
-                        <label for="cantidad">Cantidad de unidades</label>
-                        <input
-                            type="number"
-                            id="cantidad"
-                            name="cantidad"
-                            min="1"
-                            max="10"
-                            step="1"
-                            value="1"
-                            required
-                        >
-                    </p>
-
-                    <p>
-                        <label for="nota">Notas al repartidor</label>
-                        <textarea
-                            name="nota"
-                            id="nota"
-                            rows="5"
-                            maxlength="200"
-                        ></textarea>
-                    </p>
-                </fieldset>
-
-                <fieldset class="pago">
-                    <legend>Método de pago</legend>
-
-                    <p>
-                        <input
-                            type="radio"
-                            id="pago-tarjeta"
-                            name="pago"
-                            value="tarjeta"
-                            required
-                        >
-                        <label for="pago-tarjeta">Tarjeta</label>
-                    </p>
-
-                    <p>
-                        <input
-                            type="radio"
-                            id="pago-paypal"
-                            name="pago"
-                            value="paypal"
-                        >
-                        <label for="pago-paypal">PayPal</label>
-                    </p>
-
-                    <p>
-                        <input
-                            type="radio"
-                            id="pago-contra"
-                            name="pago"
-                            value="contra"
-                        >
-                        <label for="pago-contra">Contra entrega</label>
-                    </p>
-                </fieldset>
-
-                <fieldset class="terminos">
-                    <legend>Confirmación</legend>
-
-                    <p>
-                        <input
-                            type="checkbox"
-                            id="terminos"
-                            name="terminos"
-                            required
-                        >
-                        <label for="terminos">
-                            Acepto los términos y condiciones
-                        </label>
-                    </p>
-                </fieldset>
-
-                <fieldset class="facturacion">
-                    <legend>Datos de facturación</legend>
-
-                    <p>
-                        <label for="empresa">Empresa</label>
-                        <input
-                            type="text"
-                            id="empresa"
-                            name="empresa"
-                        >
-                    </p>
-
-                    <p>
-                        <label for="ruc">RUC</label>
-                        <input
-                            type="text"
-                            id="ruc"
-                            name="ruc"
-                            pattern="[0-9]{11}"
-                            maxlength="11"
-                            required
-                        >
-                    </p>
-
-                    <p>
-                        <label for="pais_facturacion">País</label>
-
-                        <select
-                            id="pais_facturacion"
-                            name="pais_facturacion"
-                            required
-                        >
-                            <option value="">Seleccione un país</option>
-                            <option value="pe">Perú</option>
-                            <option value="ar">Argentina</option>
-                            <option value="mx">México</option>
-                            <option value="ca">Canadá</option>
-                        </select>
-                    </p>
-                </fieldset>
-
-                <button class="confirmar" type="submit">
-                    Confirmar pedido
-                </button>
-
-            </form>
-        </section>
-
-    </main>
-
-    <footer>
-        <div class="footer-marca">
-            <h3>TechCart</h3>
-            <p>Tu tienda de tecnología.</p>
+        <div id="filtros-categorias" class="flex flex-wrap gap-2 mb-4">
+            <button class="boton" type="button" data-categoria="todas">Todas</button>
+            <button class="boton" type="button" data-categoria="laptops">Laptops</button>
+            <button class="boton" type="button" data-categoria="smartphones">Smartphones</button>
+            <button class="boton" type="button" data-categoria="tablets">Tablets</button>
+            <button class="boton" type="button" data-categoria="audio">Audio</button>
         </div>
 
-        <div class="footer-enlaces">
-            <h3>Enlaces</h3>
-
-            <ul>
-                <li><a href="#catalogo">Catálogo</a></li>
-                <li><a href="#compra">Comprar</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-            </ul>
+        <div id="catalogo-grid" class="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-y-6 gap-x-4 md:auto-rows-fr">
         </div>
+    </section>
 
-        <div class="footer-contacto">
-            <h3>Contacto</h3>
+    <section id="carrito" class="bg-tarjeta rounded-tarjeta p-6 mt-6">
+      <h2 class="titulo-seccion">Tu carrito</h2>
+      <ul id="lista-carrito" class="list-none p-0 m-0"></ul>
+      <p id="total-carrito" class="font-semibold mt-4"></p>
+      <div class="h-2 w-full bg-fondo-suave rounded-full overflow:hidden mt-2" aria-hidden="true">
+        <div id="barra-envio" class="h-full bg-exito w-0"></div>
+      </div>
+      <p id="mensaje-envio" class="text-sm text-texto-suave mt-1"></p>
+      <button id="vaciar" class="boton mt-4" type="button">Vaciar Carrito</button>
+    </section>
+    <section id="compra" class="bg-tarjeta rounded-tarjeta p-6 mt-6">
+      <h2 class="titulo-seccion">Finalizar compra</h2>
 
-            <address>
-                <a href="mailto:edwardhc1997@gmail.com">
-                    edwardhc1997@gmail.com
-                </a>
-            </address>
-        </div>
+      <form id="form-compra" novalidate>
 
-        <p class="copyright">
-            &copy; 2026 TechCart - Proyecto educativo
+        <fieldset class="border border-borde rounded-lg p-4 mb-4 grid grid-cols-1 gap-x-4 md:grid-cols-2">
+          <legend class="font-semibold px-1.5">Datos de envío</legend>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <label class="basis-full" for="nombre">Nombre completo</label>
+            <input class="campo" type="text" id="nombre" name="nombre" required minlength="3"
+                   placeholder="Ej.: Ana Pérez" autocomplete="name" />
+          </p>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <label class="basis-full" for="email">Correo electrónico</label>
+            <input class="campo" type="email" id="email" name="email" required autocomplete="email" />
+          </p>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <label class="basis-full" for="direccion">Dirección</label>
+            <input class="campo" type="text" id="direccion" name="direccion" required minlength="5"
+                   autocomplete="address-line1" />
+          </p>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <label class="basis-full" for="ciudad">Ciudad</label>
+            <input class="campo" type="text" id="ciudad" name="ciudad" list="ciudades" required
+                   autocomplete="address-level2" />
+            <datalist id="ciudades">
+              <option value="Lima"></option>
+              <option value="Bogotá"></option>
+              <option value="Ciudad de México"></option>
+              <option value="Buenos Aires"></option>
+              <option value="Madrid"></option>
+            </datalist>
+          </p>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <label class="basis-full" for="pais">País</label>
+            <select class="campo" id="pais" name="pais" required>
+              <option value="">— Elige un país —</option>
+              <option value="pe">Perú</option>
+              <option value="co">Colombia</option>
+              <option value="mx">México</option>
+              <option value="ar">Argentina</option>
+              <option value="es">España</option>
+            </select>
+          </p>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <label class="basis-full" for="telefono">Teléfono</label>
+            <input class="campo" type="tel" id="telefono" name="telefono" required pattern="[0-9]{7,}"
+                   title="Solo números, al menos 7 dígitos" autocomplete="tel" />
+          </p>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <label class="basis-full" for="fecha">Fecha de entrega deseada</label>
+            <input class="campo" type="date" id="fecha" name="fecha" />
+          </p>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <label class="basis-full" for="cantidad">Cantidad de unidades</label>
+            <input class="campo" type="number" id="cantidad" name="cantidad" min="1" max="10" step="1"
+                   value="1" required />
+          </p>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0 col-span-full">
+            <label class="basis-full" for="notas">Notas para el repartidor (opcional)</label>
+            <textarea class="campo" id="notas" name="notas" rows="3" maxlength="200"></textarea>
+          </p>
+        </fieldset>
+
+        <fieldset class="border border-borde rounded-lg p-4 mb-4">
+          <legend class="font-semibold px-1.5">Método de pago</legend>
+
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <input class="shrink-0 focus-visible:outline-3 focus-visible:outline-marca focus-visible:outline-offset-2"
+                   type="radio" id="pago-tarjeta" name="pago" value="tarjeta" required />
+            <label for="pago-tarjeta">Tarjeta</label>
+          </p>
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <input class="shrink-0 focus-visible:outline-3 focus-visible:outline-marca focus-visible:outline-offset-2"
+                   type="radio" id="pago-paypal" name="pago" value="paypal" />
+            <label for="pago-paypal">PayPal</label>
+          </p>
+          <p class="flex flex-wrap items-center gap-2 my-3 last:mb-0">
+            <input class="shrink-0 focus-visible:outline-3 focus-visible:outline-marca focus-visible:outline-offset-2"
+                   type="radio" id="pago-contra" name="pago" value="contraentrega" />
+            <label for="pago-contra">Contra entrega</label>
+          </p>
+        </fieldset>
+
+        <p class="flex flex-wrap items-center gap-2 my-3">
+          <input class="shrink-0 focus-visible:outline-3 focus-visible:outline-marca focus-visible:outline-offset-2"
+                 type="checkbox" id="terminos" name="terminos" required />
+          <label for="terminos">Acepto los términos y condiciones</label>
         </p>
-    </footer>
+
+        <button class="boton bg-exito text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                type="submit">Confirmar pedido</button>
+        <div id="estado-pedido" class="mt-3" role="status" aria-live="polite"></div>
+      </form>
+    </section>
+
+  </main>
+
+  <aside class="flex flex-col items-stretch gap-2 bg-tarjeta border border-borde rounded-tarjeta p-6 overflow-x-auto">
+    <h2 class="titulo-seccion">Información de compra</h2>
+
+    <h3 class="text-lg leading-tight mt-4">Cómo comprar en tres pasos</h3>
+
+    <ol class="list-decimal pl-6">
+      <li>Elige un producto del catálogo.</li>
+      <li>Agrégalo al carrito.</li>
+      <li>Confirma tu pedido con tus datos de envío.</li>
+    </ol>
+
+    <h3 class="text-lg leading-tight mt-4">Costos de envío</h3>
+    <table class="w-full border-collapse text-sm">
+      <caption class="font-semibold text-left mb-2">Tarifas por zona</caption>
+      <thead>
+        <tr>
+          <th class="border border-borde px-2 py-1.5 text-left bg-fondo-suave">Zona</th>
+          <th class="border border-borde px-2 py-1.5 text-left bg-fondo-suave">Tiempo</th>
+          <th class="border border-borde px-2 py-1.5 text-left bg-fondo-suave">Costo</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="even:bg-fondo hover:bg-resalte">
+          <td class="border border-borde px-2 py-1.5">Lima</td>
+          <td class="border border-borde px-2 py-1.5">24 horas</td>
+          <td class="border border-borde px-2 py-1.5">Gratis</td>
+        </tr>
+        <tr class="even:bg-fondo hover:bg-resalte">
+          <td class="border border-borde px-2 py-1.5">Resto del Perú</td>
+          <td class="border border-borde px-2 py-1.5">3 a 5 días</td>
+          <td class="border border-borde px-2 py-1.5">$9.90</td>
+        </tr>
+        <tr class="even:bg-fondo hover:bg-resalte">
+          <td class="border border-borde px-2 py-1.5">Internacional</td>
+          <td class="border border-borde px-2 py-1.5">7 a 15 días</td>
+          <td class="border border-borde px-2 py-1.5">$29.90</td>
+        </tr>
+      </tbody>
+    </table>
+  </aside>
+
+  <footer class="flex flex-wrap items-center gap-4 py-6 border-t border-borde text-texto-suave text-sm">
+    <p>&copy; 2026 TechCart · Proyecto educativo</p>
+    <p>Datos e imágenes de
+      <a class="text-marca after:content-['↗'] after:ml-1"
+         href="https://dummyjson.com" target="_blank" rel="noopener">DummyJSON</a></p>
+
+    <address class="order-first mr-auto not-italic">Contacto:
+      <a class="text-marca" href="mailto:hola@techcart.com">hola@techcart.com</a></address>
+  </footer>
 
 </body>
 </html>
